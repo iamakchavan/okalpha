@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-in {
+    animation-duration: 300ms;
+    animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    animation-fill-mode: forwards;
+  }
+
+  .slide-in-from-bottom-2 {
+    animation-name: slideInFromBottom;
+  }
+
+  @keyframes slideInFromBottom {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes bounce-subtle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0;
+      transform: scale(1.5);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.8);
+    }
+  }
+
+  @keyframes rotate-glow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .search-icon-glow::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    background: conic-gradient(
+      from 0deg,
+      rgb(59, 130, 246, 0.6),
+      rgb(59, 130, 246, 0.1),
+      rgb(59, 130, 246, 0.6)
+    );
+    border-radius: 50%;
+    animation: rotate-glow 4s linear infinite;
+    filter: blur(8px);
+  }
+
+  .search-icon-glow::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(
+      from 180deg,
+      rgb(59, 130, 246, 0.3),
+      rgb(59, 130, 246, 0.1),
+      rgb(59, 130, 246, 0.3)
+    );
+    border-radius: 50%;
+    animation: rotate-glow 3s linear infinite reverse;
+    filter: blur(4px);
+  }
+
+  .search-icon-pulse::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(59, 130, 246, 0.2) 0%,
+      rgba(59, 130, 246, 0) 70%
+    );
+    animation: glow-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes slide-in-from-left-4 {
+    from {
+      opacity: 0;
+      transform: translateX(-1rem) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes slide-in-from-right-2 {
+    from {
+      opacity: 0;
+      transform: translateX(0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .slide-in-from-left-4 {
+    animation: slide-in-from-left-4 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  .slide-in-from-right-2 {
+    animation: slide-in-from-right-2 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  /* Apple-inspired animations */
+  @keyframes scale-up {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-scale-up {
+    animation: scale-up 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  .backdrop-blur-hover {
+    transition: backdrop-filter 0.3s ease;
+  }
+
+  .backdrop-blur-hover:hover {
+    backdrop-filter: blur(12px);
+  }
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  @apply bg-gray-50 dark:bg-gray-900;
+}
+
+.app-container {
+  @apply w-[400px] bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden;
+  min-height: 400px;
+}
+
+.input-container {
+  @apply relative flex items-center bg-white/90 dark:bg-gray-800/90 rounded-lg border border-gray-200 dark:border-gray-700 
+    hover:border-gray-300 dark:hover:border-gray-600 
+    focus-within:border-blue-500 dark:focus-within:border-blue-400 
+    focus-within:ring-2 focus-within:ring-blue-100 dark:focus-within:ring-blue-900 
+    transition-all duration-200
+    backdrop-blur-sm backdrop-saturate-150;
+}
+
+.input-field {
+  @apply w-full px-4 py-3 bg-transparent border-none focus:outline-none 
+    text-gray-800 dark:text-gray-100 
+    placeholder-gray-400 dark:placeholder-gray-500;
+}
